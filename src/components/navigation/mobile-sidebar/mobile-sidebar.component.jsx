@@ -24,10 +24,11 @@ import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 
 import useStyles from './mobile-sidebar.styles';
+import { blue, deepPurple, orange, red } from '@material-ui/core/colors';
 
 const MobileSidebar = ({ toggleDrawer, left }) => {
 
-    const { nameContainer, nameText, titleText } = useStyles();
+    const { nameContainer, nameText } = useStyles();
 
     return (
         <SwipeableDrawer open={left} onClose={toggleDrawer('left', false)} onOpen={toggleDrawer('left', true)}>
@@ -39,11 +40,11 @@ const MobileSidebar = ({ toggleDrawer, left }) => {
             <Divider />
 
             <List>
-                <SidebarItem icon={<SettingsRemoteOutlinedIcon />} toggleDrawer={() => toggleDrawer('left', false)} name='Sensor Data'/>
-                <SidebarItem icon={<FavoriteBorderOutlinedIcon />} toggleDrawer={() => toggleDrawer('left', false)} name='Health indicator'/>
-                <SidebarItem icon={<GraphicEqOutlinedIcon />} toggleDrawer={() => toggleDrawer('left', false)} name='Audio Data'/>
-                <SidebarItem icon={<FilterVintageOutlinedIcon />} toggleDrawer={() => toggleDrawer('left', false)} name='Pollen Data'/>
-                <SidebarItem icon={<EmojiNatureOutlinedIcon />} toggleDrawer={() => toggleDrawer('left', false)} name='Waggle Dance Data'/>
+                <SidebarItem link='/sensor' icon={<SettingsRemoteOutlinedIcon style={{ color: deepPurple[500] }} />} toggleDrawer={() => toggleDrawer('left', false)} name='Sensor Data'/>
+                <SidebarItem link='/health' icon={<FavoriteBorderOutlinedIcon style={{ color: red[500] }} />} toggleDrawer={() => toggleDrawer('left', false)} name='Health indicator'/>
+                <SidebarItem link='/audio' icon={<GraphicEqOutlinedIcon style={{ color: blue[500] }} />} toggleDrawer={() => toggleDrawer('left', false)} name='Audio Data'/>
+                <SidebarItem link='/pollen' icon={<FilterVintageOutlinedIcon style={{ color: red[500] }} />} toggleDrawer={() => toggleDrawer('left', false)} name='Pollen Data'/>
+                <SidebarItem link='/waggle' icon={<EmojiNatureOutlinedIcon style={{ color: orange[500] }} />} toggleDrawer={() => toggleDrawer('left', false)} name='Waggle Dance Data'/>
             </List>
 
         </SwipeableDrawer>

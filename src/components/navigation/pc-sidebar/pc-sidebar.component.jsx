@@ -29,11 +29,11 @@ const PcSidebar = () => {
             <Divider />
 
             <List>
-                <SidebarItem icon={<SettingsRemoteOutlinedIcon style={{ color: deepPurple[500] }} />} toggleDrawer={() => null} name='Sensor Data'/>
-                <SidebarItem icon={<FavoriteBorderOutlinedIcon style={{ color: red[500] }} />} toggleDrawer={() => null} name='Health indicator'/>
-                <SidebarItem icon={<GraphicEqOutlinedIcon style={{ color: blue[300] }} />} toggleDrawer={() => null} name='Audio Data'/>
-                <SidebarItem icon={<FilterVintageOutlinedIcon style={{ color: red[400] }} />} toggleDrawer={() => null} name='Pollen Data'/>
-                <SidebarItem icon={<EmojiNatureOutlinedIcon style={{ color: orange[500] }} />} toggleDrawer={() => null} name='Waggle Dance Data'/>
+                <SidebarItem link='/sensor' icon={<SettingsRemoteOutlinedIcon style={{ color: deepPurple[500] }} />} toggleDrawer={() => null} name='Sensor Data'/>
+                <SidebarItem link='/health' icon={<FavoriteBorderOutlinedIcon style={{ color: red[500] }} />} toggleDrawer={() => null} name='Health indicator'/>
+                <SidebarItem link='/audio' icon={<GraphicEqOutlinedIcon style={{ color: blue[500] }} />} toggleDrawer={() => null} name='Audio Data'/>
+                <SidebarItem link='/pollen' icon={<FilterVintageOutlinedIcon style={{ color: red[500] }} />} toggleDrawer={() => null} name='Pollen Data'/>
+                <SidebarItem link='/waggle' icon={<EmojiNatureOutlinedIcon style={{ color: orange[500] }} />} toggleDrawer={() => null} name='Waggle Dance Data'/>
             </List>
         </Drawer>
     );

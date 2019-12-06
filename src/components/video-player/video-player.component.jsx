@@ -1,36 +1,73 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import PropTypes from 'prop-types';
 
-const useStyles = makeStyles({
-    card: {
-        maxWidth: 345,
-        marginTop: 100
-    },
-    media: {
-        height: 345,
-    },
-});
+import { withStyles } from '@material-ui/core/styles';
 
-export default function VideoPlayer() {
-    const classes = useStyles();
+import styles from './video-player.styles';
 
-    return (
-        <Card className={classes.card}>
-            <CardActionArea>
-                <CardMedia
-                    className={classes.media}
-                    component="iframe"
-                    image="https://storage.coverr.co/videos/Bee?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBJZCI6IjExNDMyN0NEOTRCMUFCMTFERTE3IiwiaWF0IjoxNTc1NTUzNzE1fQ.c2UHUYWsivuAT9lSBtsAAwpZ5k5eTv58KFL4st8-s3U"
-                    title="Contemplative Reptile"
-                />
-            </CardActionArea>
-        </Card>
-    );
+class VideoPlayer extends React.Component {
+
+    constructor(props){
+        super(props);
+
+        this.state = {
+            windowSize: this.getWindowDimensions()
+        }
+    }
+
+    getWindowDimensions = () => {
+        const { innerWidth: width, innerHeight: height } = window;
+        return { width, height };
+    };
+
+    handleResize = () => {
+        this.setState({ windowSize: this.getWindowDimensions() });
+    };
+
+    setVideoPlayerWidth = () => {
+        const width = this.state.windowSize.width;
+        let videoWidth = Math.floor(width * 0.9);
+
+        if(width > 960){
+            videoWidth -= 210;
+        }
+        if(videoWidth < 725){
+            return videoWidth;
+        } else {
+            return 725
+        }
+    };
+
+    setVideoPlayerHeight = () => {
+        const width = this.state.windowSize.width;
+        const height = Math.floor(width / 16 * 9)
+
+        if(height < 450){
+            return height
+        } else {
+            return 450
+        }
+    };
+
+    render() {
+        window.addEventListener('resize', this.handleResize);
+        const url = "http://clips.vorwaerts-gmbh.de/VfE_html5.mp4";
+        const { classes } = this.props;
+        const videoWidth = this.setVideoPlayerWidth();
+        const videoHeight = this.setVideoPlayerHeight();
+
+        return (
+            <div className={classes.videoPlayerContainer}>
+                <video width={videoWidth} height={videoHeight} controls>
+                    <source src={url} />
+                </video>
+            </div>
+        )
+    }
 }
+
+VideoPlayer.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+
+export default withStyles(styles)(VideoPlayer);

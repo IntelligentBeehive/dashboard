@@ -18,6 +18,10 @@ const useStyles = makeStyles(theme => ({
         }
     },
 
+    healthChartContainer: {
+        marginTop: 50,
+    },
+
     videoPlayer: {
         display: 'block',
         marginTop: 200,

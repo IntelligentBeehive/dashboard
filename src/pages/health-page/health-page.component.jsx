@@ -14,26 +14,26 @@ const HealthPage = () => {
     const classes = useStyles();
 
     return (
-        <React.Fragment>
-            <Grid className={classes.cardContainer} direction="row" justify="center" alignItems="center">
-                <Grid item xs={12} sm={6} md={6} lg={3}>
-                    <StatsCard image={HeartImage} name={'Health'} information={'Amount of healthy bees'} value={'78.2%'} />
-                </Grid>
-                <Grid item xs={12} sm={6} md={6} lg={3}>
-                    <StatsCard image={HoneyComb} name={'Amount of bees'} information={'Total amount of bees'} value={'403'} />
-                </Grid>
-                <Grid item xs={12} sm={12} md={12} lg={6} >
-                    <VideoPlayer />
+        <Grid className={classes.pageContainer} container direction="row" justify="center" alignItems="center">
+            <Grid item xs={12} sm={6} xl={3}>
+                <StatsCard image={HeartImage} name={'Health'} information={'Amount of healthy bees'} value={'78.2%'} />
+            </Grid>
+            <Grid item xs={12} sm={6} xl={3}>
+                <StatsCard image={HoneyComb} name={'Amount of bees'} information={'Total amount of bees'} value={'403'} />
+            </Grid>
+
+            <Grid item xs={12} xl={6}>
+                <Grid container direction="row" justify="center" alignItems="center">
+                    <Grid item xs={12} sm={12} md={12} lg={6} >
+                        <VideoPlayer />
+                    </Grid>
                 </Grid>
             </Grid>
 
-            <Grid className={classes.container} direction="row" justify="flex-start" alignItems="flex-start">
-                <Grid item xs={12}>
-                    <HealthChart />
-                </Grid>
+            <Grid item xs={12} className={classes.healthChartContainer}>
+                <HealthChart />
             </Grid>
-        </React.Fragment>
-
+        </Grid>
     );
 };
 

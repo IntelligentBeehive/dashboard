@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types';
 
 import {
     LineChart,
@@ -9,7 +10,10 @@ import {
     Tooltip,
     Legend,
 } from 'recharts';
-import useStyles from './health-chart.styles';
+
+import { withStyles } from '@material-ui/core/styles';
+
+import styles from './health-chart.styles';
 
 const data = [
     { name: 'Jan', health: 70, },
@@ -26,20 +30,56 @@ const data = [
     { name: 'Dec', health: 60, },
 ];
 
-const HealthChart = () => {
+class HealthChart extends React.Component {
 
-    const classes = useStyles();
+    constructor(props){
+        super(props);
 
-    return (
-        <LineChart className={classes.chart} width={1600} height={300} data={data}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Line type="monotone" dataKey="health" stroke="#8884d8" activeDot={{ r: 8 }} />
-        </LineChart>
-    )
+        this.state = {
+            windowSize: this.getWindowDimensions()
+        }
+    }
+
+    getWindowDimensions = () => {
+        const { innerWidth: width, innerHeight: height } = window;
+        return { width, height };
+    };
+
+    handleResize = () => {
+        this.setState({ windowSize: this.getWindowDimensions() });
+    };
+
+    setGraphWidth = () => {
+        const width = this.state.windowSize.width;
+        if(width < 960){
+            return Math.floor(width * 0.9);
+        } else {
+            return Math.floor(width * 0.9 - 210);
+        }
+    };
+
+    render() {
+        window.addEventListener('resize', this.handleResize);
+
+        const { classes } = this.props;
+        const graphWidth = this.setGraphWidth();
+        console.log(graphWidth);
+
+        return (
+            <LineChart className={classes.chart} width={graphWidth} height={300} data={data}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Line type="monotone" dataKey="health" stroke="#8884d8" activeDot={{ r: 8 }} />
+            </LineChart>
+        )
+    }
+}
+
+HealthChart.propTypes = {
+    classes: PropTypes.object.isRequired,
 };
 
-export default HealthChart;
+export default withStyles(styles)(HealthChart);

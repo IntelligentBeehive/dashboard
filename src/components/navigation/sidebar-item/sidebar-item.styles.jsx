@@ -3,13 +3,18 @@ import { makeStyles } from '@material-ui/core';
 const useStyles = makeStyles({
 
     sidebarItem: {
-        border: '1px solid black',
-        borderRadius: '5px',
-        backgroundColor: '#ebebeb',
-        marginLeft: 10,
-        marginRight: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
         marginTop: 25,
-        width: 210
+        width: 210,
+
+        '&:hover': {
+            background: "rgb(20,26,35) !important",
+        }
+    },
+
+    sidebarItemText: {
+        color: '#dce2e4'
     }
 
 });

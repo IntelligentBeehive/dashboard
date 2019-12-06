@@ -8,6 +8,7 @@ import { CssBaseline } from '@material-ui/core';
 import 'typeface-roboto';
 
 import * as serviceWorker from './serviceWorker';
+import './index.css'
 
 ReactDOM.render(
     <BrowserRouter>

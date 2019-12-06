@@ -9,18 +9,18 @@ import IconButton from '@material-ui/core/IconButton';
 import useStyles from './navbar.styles';
 
 const Navbar = ({ username, toggleDrawer }) => {
-    const { navbar, toolbar, nameText, menuButton } = useStyles();
+    const classes = useStyles();
 
     return (
-        <AppBar className={navbar} position="fixed">
-            <Toolbar className={toolbar}>
-                <IconButton className={menuButton} color="inherit" aria-label="open drawer" onClick={toggleDrawer('left', true)} edge="start">
+        <AppBar className={classes.navbar} position="fixed">
+            <Toolbar className={classes.toolbar}>
+                <IconButton className={classes.menuButton} color="inherit" aria-label="open drawer" onClick={() => toggleDrawer('left', true)} edge="start">
                     <MenuIcon />
                 </IconButton>
-                <Typography className={nameText} variant="h6" >{username}</Typography>
+                <Typography className={classes.nameText} variant="h6" >{username}</Typography>
             </Toolbar>
         </AppBar>
     );
-}
+};
 
 export default Navbar;

@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
         flexDirection: 'column',
         position: 'fixed',
         color: 'rgb(255, 255, 255) !important',
-        backgroundColor: 'rgb(13, 20, 80) !important',
+        backgroundColor: '#24292e !important',
         minHeight: 64
     },
     toolbar: {
@@ -23,10 +23,6 @@ const useStyles = makeStyles(theme => ({
         lineHeight: '100%',
         paddingRight: 20,
         marginTop: 6
-    },
-    titleText: {
-        fontSize: '12px',
-        fontWeight: 300
     },
     menuButton: {
         [theme.breakpoints.up('md')]: {

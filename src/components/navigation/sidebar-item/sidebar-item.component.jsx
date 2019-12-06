@@ -7,19 +7,26 @@ import ListItemText from '@material-ui/core/ListItemText';
 
 import useStyles from './sidebar-item.styles';
 
-const SidebarItem = ({ icon, name, toggleDrawer, link, history }) => {
+const SidebarItem = ({ icon, name, toggleDrawer, link, history, selectedItem, setSelectedItem }) => {
 
     const classes = useStyles();
 
-    const goToLink = () => {
-        toggleDrawer('left', false);
+    const openItemPage = () => {
+        setSelectedItem(name);
+        toggleDrawer();
         history.push(`${link}`);
     };
 
     return (
-        <ListItem className={classes.sidebarItem} button key={name} onClick={() => goToLink()}>
+        <ListItem
+            className={classes.sidebarItem}
+            button
+            key={name}
+            onClick={() => openItemPage()}
+            style={{ backgroundColor: `${selectedItem === name ? 'rgb(0,0,0)' : 'transparent'}` }}
+        >
             <ListItemIcon>{icon}</ListItemIcon>
-            <ListItemText primary={name} />
+            <ListItemText className={classes.sidebarItemText} primary={name} />
         </ListItem>
     )
 };

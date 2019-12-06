@@ -1,12 +1,22 @@
-import { makeStyles } from '@material-ui/core';
+const styles = theme => ({
 
-const useStyles = makeStyles({
+    sidebarContainer: {
+        backgroundColor: 'rgb(27, 36, 48)'
+    },
+
+    BeehiveIcon: {
+        width: 40,
+        height: 40,
+        marginRight: 15
+    },
+
     nameContainer: {
         padding: 30
     },
     nameText: {
+        paddingBottom: 5,
         display: 'block',
-        color: '#00130f',
+        color: '#ccd2d4',
         fontWeight: 400,
         fontSize: 28
     },
@@ -18,4 +28,4 @@ const useStyles = makeStyles({
     },
 });
 
-export default useStyles;
+export default styles;

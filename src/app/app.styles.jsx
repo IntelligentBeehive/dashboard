@@ -1,12 +1,11 @@
-import { makeStyles } from '@material-ui/core';
-
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
     mainContent: {
+        backgroundColor: 'transparent',
         marginTop: 64,
         [theme.breakpoints.up('md')]: {
             paddingLeft: 230
         },
     }
-}));
+});
 
-export default useStyles;
+export default styles;

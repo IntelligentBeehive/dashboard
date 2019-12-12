@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import HealthChart from '../../components/charts/health-chart/health-chart.component';
-import CustomizedTables from '../../components/audio-table/audio-table.component';
+import CustomizedTables from '../../components/tables/audio-table/audio-table.component';
 
 import Grid from '@material-ui/core/Grid';
 import { withStyles } from '@material-ui/core';

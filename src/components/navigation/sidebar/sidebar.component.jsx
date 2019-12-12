@@ -12,9 +12,8 @@ import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutline
 import AdbIcon from '@material-ui/icons/Adb';
 
 import SidebarItem from '../sidebar-item/sidebar-item.component';
-import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
-import { useWindowSize } from '../../../app/app.component';
+
 
 import styles from './sidebar.styles';
 import { withStyles } from '@material-ui/core/styles';

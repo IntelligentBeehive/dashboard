@@ -11,6 +11,7 @@ const styles = (theme) => ({
         fontSize: 24,
         fontWeight: 500
     }
+
 });
 
 export default styles;

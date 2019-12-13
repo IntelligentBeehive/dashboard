@@ -12,14 +12,14 @@ import FavoriteBorderOutlinedIcon from '@material-ui/icons/FavoriteBorderOutline
 import AdbIcon from '@material-ui/icons/Adb';
 
 import SidebarItem from '../sidebar-item/sidebar-item.component';
-import Drawer from '@material-ui/core/Drawer';
 import Typography from '@material-ui/core/Typography';
-import { useWindowSize } from '../../../app/app.component';
+
 
 import styles from './sidebar.styles';
 import { withStyles } from '@material-ui/core/styles';
 import { amber, blue, deepPurple, orange, red } from '@material-ui/core/colors';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import { withRouter } from 'react-router-dom';
 
 function getWindowDimensions() {
     const { innerWidth: width, innerHeight: height } = window;
@@ -31,8 +31,11 @@ class Sidebar extends React.Component {
     constructor(props){
         super(props);
 
+        const url = window.location.href.split('/');
+        const lastSegment = url.pop() || url.pop();
+
         this.state = {
-            selectedItem: 'Sensor',
+            selectedItem: lastSegment.charAt(0).toUpperCase() + lastSegment.slice(1),
             windowSize: getWindowDimensions()
         }
     }
@@ -125,4 +128,4 @@ Sidebar.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(Sidebar);
+export default withRouter(withStyles(styles)(Sidebar));

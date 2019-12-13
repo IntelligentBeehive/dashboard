@@ -50,6 +50,9 @@ class PollenTable extends React.Component {
             }
         });
 
+        // sort the list based on highest percentage to lowest
+        filteredList.sort((a, b) => (a.percentage > b.percentage) ? -1 : 1);
+
         return filteredList;
     };
 
@@ -63,7 +66,7 @@ class PollenTable extends React.Component {
             }
         });
 
-        return totalNumberOfPlants / totalItemsInList * 100;
+        return parseFloat(`${totalNumberOfPlants / totalItemsInList * 100}`).toFixed(2);
     };
 
 

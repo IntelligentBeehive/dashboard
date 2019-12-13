@@ -20,13 +20,19 @@ class PollenPage extends React.Component {
 
         this.state = {
             loading: true,
-            pollen: {}
+            pollen: {},
+            selectedTimeFilter: 'Day'
         }
     }
 
+    changeTimeFilter = event => {
+        console.log('Filter is now: ' + event.target.value)
+        this.setState({ ...this.state, selectedTimeFilter: event.target.value })
+    };
+
 
     async componentDidMount () {
-        const data = await fetch("http://192.168.43.189:8090/pollen");
+        const data = await fetch("http://localhost:8090/pollen");
         const response = await data.json();
 
         this.setState({ loading: false, pollen: response });
@@ -51,11 +57,14 @@ class PollenPage extends React.Component {
                                 <Grid container direction="row" justify="center" alignItems="center">
 
                                     <Grid item xs={12}>
-                                        <PollenAmountCard value={1200} information={"Amount of pollen packages today"} name={"daily pollen"} image={pollenLogo} />
-                                    </Grid>
-
-                                    <Grid item xs={12}>
-                                        <StatsCard value={1200} information={"Amount of pollen packages today"} name={"daily pollen"} image={pollenLogo} />
+                                        <PollenAmountCard
+                                            value={1200}
+                                            changeTimeFilter={this.changeTimeFilter}
+                                            information={"Amount of pollen packages today"}
+                                            name={"daily pollen"}
+                                            image={pollenLogo}
+                                            defaultSelect={this.state.selectedTimeFilter}
+                                        />
                                     </Grid>
 
                                 </Grid>

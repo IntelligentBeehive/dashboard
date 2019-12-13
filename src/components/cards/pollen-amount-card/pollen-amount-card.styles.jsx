@@ -5,36 +5,42 @@ const useStyles = makeStyles(theme => ({
         marginTop: '100px',
         backgroundColor: '#ddd7e1',
         boxShadow: '0px 4px 5px 3px rgba(0,0,0,0.36)',
-        minHeight: 300,
-        maxHeight: 300,
+        minHeight: 500,
+        maxHeight: 500,
 
         [theme.breakpoints.down('xl')]: {
-            minWidth: 400,
-            maxWidth: 400,
+            marginRight: 40,
+            marginLeft: 80,
+            minWidth: '30vw',
+            maxWidth: '30vw',
         },
         [theme.breakpoints.down('lg')]: {
             marginRight: 40,
             marginLeft: 40,
-            minWidth: '20vw',
-            maxWidth: '20vw',
+            minWidth: '30vw',
+            maxWidth: '30vw',
         },
         [theme.breakpoints.down('md')]: {
             margin: '0 auto',
             marginTop: 50,
-            minWidth: '33vw',
-            maxWidth: '33vw',
+            minWidth: '50vw',
+            maxWidth: '50vw',
         },
         [theme.breakpoints.down('sm')]: {
-            minWidth: '40vw',
-            maxWidth: '40vw',
             margin: '0 auto',
-            marginTop: 50
+            marginTop: '70px',
+            minWidth: '80vw',
+            maxWidth: '80vw',
+            minHeight: 420,
+            maxHeight: 420,
         },
         [theme.breakpoints.down('xs')]: {
             margin: '0 auto',
             marginTop: '70px',
             minWidth: '80vw',
             maxWidth: '80vw',
+            minHeight: 420,
+            maxHeight: 420,
         },
 
 
@@ -54,6 +60,10 @@ const useStyles = makeStyles(theme => ({
             width: 50,
             height: 50
         },
+        [theme.breakpoints.down('sm')]:{
+            width: 55,
+            height: 55
+        },
         width: 75,
         height: 75,
         display: 'flex',
@@ -62,20 +72,42 @@ const useStyles = makeStyles(theme => ({
     cardTitle: {
         display: 'block',
         margin: '0 auto',
-        marginTop: 20,
+        marginTop: 10,
         textAlign: 'center',
         color: '#000000',
-        fontSize: 32,
-        fontWeight: 600
+        fontSize: 24,
+        fontWeight: 600,
+
+        [theme.breakpoints.down('xs')]:{
+            marginTop: 0,
+            fontSize: 16,
+            marginBottom: 20
+        },
+        [theme.breakpoints.down('sm')]:{
+            fontSize: 24,
+            marginBottom: 20
+        },
+        [theme.breakpoints.down('md')]:{
+            fontSize: 24,
+            marginBottom: 30
+        },
     },
     cardValue: {
         display: 'block',
         margin: '0 auto',
-        marginTop: 20,
+        marginTop: 50,
         textAlign: 'center',
         color: '#000000',
         fontSize: 32,
-        fontWeight: 400
+        fontWeight: 400,
+
+        [theme.breakpoints.down('xs')]:{
+            fontSize: 24,
+            marginTop: 35,
+        },
+        [theme.breakpoints.down('sm')]:{
+            marginTop: 40,
+        },
     },
     cardInformation: {
         display: 'block',
@@ -83,10 +115,32 @@ const useStyles = makeStyles(theme => ({
         marginTop: 50,
         textAlign: 'center',
         color: '#000000',
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: 400,
-        fontStyle: 'italic'
-    }
+        fontStyle: 'italic',
+
+        [theme.breakpoints.down('xs')]:{
+            fontSize: 14,
+            marginTop: 30,
+        },
+        [theme.breakpoints.down('sm')]:{
+            fontSize: 14,
+            marginTop: 30,
+        },
+    },
+    dropDownContainer: {
+        margin: '0 auto',
+        minWidth: 120,
+        maxWidth: 120
+    },
+    formControl: {
+        margin: '0 auto',
+        minWidth: 120,
+        maxWidth: 120
+    },
+    selectEmpty: {
+        marginTop: theme.spacing(2),
+    },
 }));
 
 export default useStyles;

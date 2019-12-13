@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect, Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch, withRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import Navbar from '../components/navigation/navbar/navbar.component';
@@ -30,7 +30,7 @@ class App extends React.Component {
     };
 
     render() {
-        const { classes } = this.props;
+        const { classes, history } = this.props;
 
         return (
             <React.Fragment>
@@ -60,4 +60,4 @@ App.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(App);
+export default withRouter(withStyles(styles)(App));

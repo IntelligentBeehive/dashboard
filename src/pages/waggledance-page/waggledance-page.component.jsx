@@ -2,7 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import StatsCard from '../../components/cards/stats-card/stats-card.component';
 import HeartImage from '../../assets/img/HeathCrossLogo.png';
-import GoogleMaps from '../../components/google-maps/google-maps.component';
+import GoogleMaps from '../../components/location-map/location-map.component';
 
 class WaggleDancePage extends React.Component {
 

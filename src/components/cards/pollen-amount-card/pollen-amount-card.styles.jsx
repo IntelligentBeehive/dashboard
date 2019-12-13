@@ -1,6 +1,4 @@
-import { makeStyles } from '@material-ui/core';
-
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
     card: {
         marginTop: '100px',
         backgroundColor: '#ddd7e1',
@@ -141,6 +139,6 @@ const useStyles = makeStyles(theme => ({
     selectEmpty: {
         marginTop: theme.spacing(2),
     },
-}));
+});
 
-export default useStyles;
+export default styles;

@@ -31,10 +31,13 @@ class SensorPage extends React.Component {
     }
 
     async componentDidMount() {
-        const tempData = await fetch("http://localhost:8090/sensors/temp");
+        const url = `${process.env.REACT_APP_API_URL}/sensors/temp`;
+        console.log('server url', url);
+
+        const tempData = await fetch(`${process.env.REACT_APP_API_URL}/sensors/temp`);
         const tempResponse = await tempData.json();
 
-        const humidityData = await fetch("http://localhost:8090/sensors/humidity");
+        const humidityData = await fetch(`${process.env.REACT_APP_API_URL}/sensors/humidity`);
         const humidityResponse = await humidityData.json();
 
 

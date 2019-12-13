@@ -87,7 +87,7 @@ class PollenTable extends React.Component {
                             <StyledTableCell align="left">Percentage</StyledTableCell>
                         </TableRow>
                     </TableHead>
-                    <TableBody>
+                    <TableBody className={classes.tableBody}>
                         {
                             filteredPollenList.map(pollen => (
                                 <StyledTableRow key={pollen.dateCreated}>

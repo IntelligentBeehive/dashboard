@@ -1,24 +1,26 @@
 import React from 'react';
-
-import { CartesianGrid, Legend, Label, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core';
-import styles from './humidity-chart.styles';
-import LoadingSpinner from '../../loading-spinner/loading-spinner.component';
-import Typography from '@material-ui/core/Typography';
+import { CartesianGrid, Label, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
+
+import LoadingSpinner from '../../../loading-spinner/loading-spinner.component';
 import AxisLabel from '../../axis-label/axis-label.component';
 
-class HumidityChart extends React.Component {
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core';
 
-    constructor(props){
+import styles from './no2-chart.styles';
+
+class No2Chart extends React.Component {
+
+    constructor(props) {
         super(props);
 
         const data = [];
 
-        props.tempData.SensorList.forEach(humidity => {
+        props.data.SensorList.forEach(entry => {
             data.push({
-                date: humidity.dateCreated,
-                humidity: humidity.value
+                date: entry.dateCreated,
+                no2: entry.value
             })
         });
 
@@ -61,7 +63,7 @@ class HumidityChart extends React.Component {
                         <LoadingSpinner />
                         :
                         <div className={classes.chartContainer}>
-                            <Typography className={classes.chartTitle}>Humidity overview</Typography>
+                            <Typography className={classes.chartTitle}>NO2 overview</Typography>
 
                             <LineChart
                                 className={classes.chart}
@@ -73,13 +75,13 @@ class HumidityChart extends React.Component {
                                 <CartesianGrid strokeDasharray="3 3" />
 
                                 <XAxis dataKey="date">
-                                    <Label value="Humidity over time" offset={-25} position="insideBottom" />
+                                    <Label value="NO2 over time" offset={-25} position="insideBottom" />
                                 </XAxis>
-                                <YAxis label={<AxisLabel axisType="yAxis" x={25} y={125} width={0} height={0}>Humidity in %</AxisLabel>}/>
+                                <YAxis label={<AxisLabel axisType="yAxis" x={25} y={125} width={0} height={0}>NO2 parts per million</AxisLabel>}/>
 
                                 <Tooltip />
 
-                                <Line type="monotone" dataKey="humidity" stroke="#8884d8" activeDot={{ r: 8 }} />
+                                <Line type="monotone" dataKey="no2" stroke="#8884d8" activeDot={{ r: 8 }} />
                             </LineChart>
                         </div>
                 }
@@ -88,8 +90,8 @@ class HumidityChart extends React.Component {
     }
 }
 
-HumidityChart.propTypes = {
+No2Chart.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(HumidityChart);
+export default withStyles(styles)(No2Chart);

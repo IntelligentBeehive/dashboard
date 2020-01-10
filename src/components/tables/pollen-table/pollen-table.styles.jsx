@@ -3,10 +3,10 @@ const styles = theme => ({
         margin: '0 auto',
         maxHeight: '80vh',
         [theme.breakpoints.down('xl')]: {
-            width: '35vw',
+            maxWidth: '35vw',
         },
         [theme.breakpoints.down('md')]: {
-            width: '90vw',
+            maxWidth: '80vw',
         },
         overflowX: 'auto',
 

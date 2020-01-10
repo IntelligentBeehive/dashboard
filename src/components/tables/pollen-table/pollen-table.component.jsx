@@ -18,6 +18,8 @@ const StyledTableCell = withStyles(theme => ({
     },
     body: {
         fontSize: 14,
+        paddingRight: 3,
+        paddingLeft: 3
     },
 }))(TableCell);
 

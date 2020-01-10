@@ -8,8 +8,7 @@ import pollenLogo from '../../assets/img/PollenIcon.png';
 import styles from './pollen-page.styles'
 import Grid from '@material-ui/core/Grid';
 import PollenTable from '../../components/tables/pollen-table/pollen-table.component';
-import StatsCard from '../../components/cards/stats-card/stats-card.component';
-import SmallStatsCard from '../../components/cards/small-stat-card/small-stat-card.component';
+
 import LoadingSpinner from '../../components/loading-spinner/loading-spinner.component';
 import PollenAmountCard from '../../components/cards/pollen-amount-card/pollen-amount-card.component';
 
@@ -25,9 +24,6 @@ class PollenPage extends React.Component {
             selectedTimeFilter: 'day'
         }
     }
-
-
-
 
     async componentDidMount () {
         const data = await fetch(`${process.env.REACT_APP_API_URL}/pollen`);

@@ -1,20 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import TemperatureChart from '../../components/charts/temperature-chart/temperature-chart.component';
+import TemperatureChart from '../../components/charts/sensors/temperature-chart/temperature-chart.component';
 
-import HumidityIcon from '../../assets/img/WaterDrops.png';
-import WeightIcon from '../../assets/img/WeightIcon.png';
-import CO2Icon from '../../assets/img/CO2Icon.png';
-import NO2Icon from '../../assets/img/No2Logo.png';
-
-import SmallStatsCard from '../../components/cards/small-stat-card/small-stat-card.component';
 import Grid from '@material-ui/core/Grid';
 
 import { withStyles } from '@material-ui/core';
 import styles from './sensor-page.styles'
 import LoadingSpinner from '../../components/loading-spinner/loading-spinner.component';
-import HumidityChart from '../../components/charts/humidity-chart/humidity-chart.component';
+import HumidityChart from '../../components/charts/sensors/humidity-chart/humidity-chart.component';
+import Co2Chart from '../../components/charts/sensors/co2-chart/co2-chart.component';
+import No2Chart from '../../components/charts/sensors/no2-chart/no2-chart.component';
+import WeightChart from '../../components/charts/sensors/weight-chart/weight-chart.component';
 
 
 
@@ -26,7 +23,10 @@ class SensorPage extends React.Component {
         this.state = {
             loading: true,
             tempData: {},
-            humidityData: {}
+            humidityData: {},
+            co2Data: {},
+            no2Data: {},
+            weightData: {}
         }
     }
 
@@ -40,8 +40,24 @@ class SensorPage extends React.Component {
         const humidityData = await fetch(`${process.env.REACT_APP_API_URL}/sensors/humidity`);
         const humidityResponse = await humidityData.json();
 
+        const co2Data = await fetch(`${process.env.REACT_APP_API_URL}/sensors/co2`);
+        const co2Response = await co2Data.json();
 
-        this.setState({...this.state, loading: false, tempData: tempResponse, humidityData: humidityResponse })
+        const no2Data = await fetch(`${process.env.REACT_APP_API_URL}/sensors/no2`);
+        const no2Response = await no2Data.json();
+
+        const weightData = await fetch(`${process.env.REACT_APP_API_URL}/sensors/weight`);
+        const weightResponse = await weightData.json();
+
+        this.setState({
+            ...this.state,
+            loading: false,
+            tempData: tempResponse,
+            humidityData: humidityResponse,
+            co2Data: co2Response,
+            no2Data: no2Response,
+            weightData: weightResponse
+        })
     }
 
     render() {
@@ -56,24 +72,19 @@ class SensorPage extends React.Component {
                         :
                         <Grid className={classes.pageContainer} container direction="row" justify="center" alignItems="center">
                             <Grid className={classes.temperatureCardContainer} item xs={11} sm={11} lg={11}>
-                                <TemperatureChart tempData={this.state.tempData}/>
+                                <TemperatureChart data={this.state.tempData}/>
                             </Grid>
                             <Grid className={classes.temperatureCardContainer} item xs={11} sm={11} lg={11}>
-                                <HumidityChart tempData={this.state.humidityData}/>
+                                <HumidityChart data={this.state.humidityData}/>
                             </Grid>
-
-                            <Grid item xs={12} lg={8}>
-                                <Grid container direction="row" justify="center" alignItems="center">
-                                    <Grid item xs={12} sm={6}>
-                                        <SmallStatsCard image={WeightIcon} name={'Weight'} value={'30kg'} />
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <SmallStatsCard image={CO2Icon} name={'CO2'} value={'3.222K'} />
-                                    </Grid>
-                                    <Grid item xs={12} sm={6}>
-                                        <SmallStatsCard image={NO2Icon} name={'NO2'} value={'3.181K%'} />
-                                    </Grid>
-                                </Grid>
+                            <Grid className={classes.temperatureCardContainer} item xs={11} sm={11} lg={11}>
+                                <Co2Chart data={this.state.co2Data}/>
+                            </Grid>
+                            <Grid className={classes.temperatureCardContainer} item xs={11} sm={11} lg={11}>
+                                <No2Chart data={this.state.no2Data}/>
+                            </Grid>
+                            <Grid className={classes.temperatureCardContainer} item xs={11} sm={11} lg={11}>
+                                <WeightChart data={this.state.weightData}/>
                             </Grid>
                         </Grid>
                 }

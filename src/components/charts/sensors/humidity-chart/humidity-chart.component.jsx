@@ -1,25 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { CartesianGrid, Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
+import { CartesianGrid, Legend, Label, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
 
-import LoadingSpinner from '../../loading-spinner/loading-spinner.component';
+import LoadingSpinner from '../../../loading-spinner/loading-spinner.component';
+import AxisLabel from '../../axis-label/axis-label.component';
 
+import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core';
 
-import styles from './temperature-chart.styles';
-import Typography from '@material-ui/core/Typography';
+import styles from './humidity-chart.styles';
 
-class TemperatureChart extends React.Component {
+class HumidityChart extends React.Component {
 
     constructor(props){
         super(props);
 
         const data = [];
 
-        props.tempData.SensorList.forEach(temp => {
+        props.data.SensorList.forEach(humidity => {
             data.push({
-                date: temp.dateCreated,
-                temperature: temp.value
+                date: humidity.dateCreated,
+                humidity: humidity.value
             })
         });
 
@@ -62,16 +63,25 @@ class TemperatureChart extends React.Component {
                         <LoadingSpinner />
                         :
                         <div className={classes.chartContainer}>
-                            <Typography className={classes.chartTitle}>Temperature overview</Typography>
-                            <LineChart className={classes.chart} width={graphWidth} height={300} data={this.state.data}
-                                       margin={{ top: 15, right: 30, left: 20, bottom: 25 }}
+                            <Typography className={classes.chartTitle}>Humidity overview</Typography>
+
+                            <LineChart
+                                className={classes.chart}
+                                width={graphWidth}
+                                height={300}
+                                data={this.state.data}
+                                margin={{ top: 15, right: 30, left: 20, bottom: 40 }}
                             >
                                 <CartesianGrid strokeDasharray="3 3" />
-                                <XAxis dataKey="date" />
-                                <YAxis />
+
+                                <XAxis dataKey="date">
+                                    <Label value="Humidity over time" offset={-25} position="insideBottom" />
+                                </XAxis>
+                                <YAxis label={<AxisLabel axisType="yAxis" x={25} y={125} width={0} height={0}>Humidity in %</AxisLabel>}/>
+
                                 <Tooltip />
-                                <Legend />
-                                <Line type="monotone" dataKey="temperature" stroke="#8884d8" activeDot={{ r: 8 }} />
+
+                                <Line type="monotone" dataKey="humidity" stroke="#8884d8" activeDot={{ r: 8 }} />
                             </LineChart>
                         </div>
                 }
@@ -80,8 +90,8 @@ class TemperatureChart extends React.Component {
     }
 }
 
-TemperatureChart.propTypes = {
+HumidityChart.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(TemperatureChart);
+export default withStyles(styles)(HumidityChart);

@@ -6,9 +6,9 @@ This project talks via REST to the backend API to collect real-time data from th
 
 
 # Running the project
-Step 1. Clone the project 
-Step 2. Run NPM install
-Step 3. Run NPM start
+ - Step 1 Clone the project 
+ - Step 2. Run NPM install
+ - Step 3. Run NPM start
 
 
 # Dependencies

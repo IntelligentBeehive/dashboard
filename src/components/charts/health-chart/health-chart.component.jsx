@@ -8,27 +8,13 @@ import {
     YAxis,
     CartesianGrid,
     Tooltip,
-    Legend,
+    Legend, Label,
 } from 'recharts';
 
 import { withStyles } from '@material-ui/core/styles';
 
 import styles from './health-chart.styles';
-
-const data = [
-    { name: 'Jan', health: 70, },
-    { name: 'Feb', health: 55, },
-    { name: 'Mar', health: 75, },
-    { name: 'Apr', health: 72, },
-    { name: 'May', health: 68, },
-    { name: 'Jun', health: 70, },
-    { name: 'Jul', health: 52, },
-    { name: 'Aug', health: 55, },
-    { name: 'Sep', health: 61, },
-    { name: 'Oct', health: 70, },
-    { name: 'Nov', health: 64, },
-    { name: 'Dec', health: 60, },
-];
+import Typography from '@material-ui/core/Typography';
 
 class HealthChart extends React.Component {
 
@@ -36,9 +22,18 @@ class HealthChart extends React.Component {
         super(props);
 
         this.state = {
-            windowSize: this.getWindowDimensions()
+            windowSize: this.getWindowDimensions(),
+            data: this.getGraphData(this.props.data)
         }
     }
+
+    getGraphData = data => {
+        const arr = [];
+        data.forEach(entry => arr.push({
+            hiveHealth: entry.hiveHealth
+        }));
+        return arr;
+    };
 
     getWindowDimensions = () => {
         const { innerWidth: width, innerHeight: height } = window;
@@ -63,17 +58,30 @@ class HealthChart extends React.Component {
 
         const { classes } = this.props;
         const graphWidth = this.setGraphWidth();
-        console.log(graphWidth);
+        console.log(this.state.data);
 
         return (
-            <LineChart className={classes.chart} width={graphWidth} height={300} data={data}>
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="name" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="health" stroke="#8884d8" activeDot={{ r: 8 }} />
-            </LineChart>
+            <div className={classes.chartContainer}>
+                <Typography className={classes.chartTitle}>Hive Health over time</Typography>
+
+                <LineChart
+                    className={classes.chart}
+                    width={graphWidth}
+                    height={300}
+                    data={this.state.data}
+                    margin={{ top: 15, right: 30, left: 20, bottom: 40 }}
+                >
+                    <CartesianGrid strokeDasharray="3 3" />
+
+                    <XAxis dataKey="data">
+                        <Label value="Beehive health over time" offset={-25} position="insideBottom" />
+                    </XAxis>
+
+                    <Tooltip />
+
+                    <Line type="monotone" dataKey="hiveHealth" stroke="#8884d8" activeDot={{ r: 8 }} />
+                </LineChart>
+            </div>
         )
     }
 }

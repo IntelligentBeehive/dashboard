@@ -1,6 +1,4 @@
-import { makeStyles } from '@material-ui/core';
-
-const useStyles = makeStyles(theme => ({
+const styles = theme => ({
     container: {
         display: 'flex',
         [theme.breakpoints.down('xs')]: {
@@ -28,6 +26,8 @@ const useStyles = makeStyles(theme => ({
         width: '30vw',
         height: 400
     }
-}));
+});
 
-export default useStyles;
+
+
+export default styles;

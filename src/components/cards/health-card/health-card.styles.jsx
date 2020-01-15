@@ -73,6 +73,7 @@ const useStyles = makeStyles(theme => ({
         display: 'block',
         margin: '0 auto',
         marginTop: 20,
+        marginBottom: 25,
         textAlign: 'center',
         color: '#000000',
         fontSize: 32,
@@ -81,10 +82,10 @@ const useStyles = makeStyles(theme => ({
     cardValue: {
         display: 'block',
         margin: '0 auto',
-        marginTop: 20,
+        marginTop: 10,
         textAlign: 'center',
         color: '#000000',
-        fontSize: 32,
+        fontSize: 18,
         fontWeight: 400
     },
     cardInformation: {

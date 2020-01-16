@@ -34,7 +34,7 @@ class App extends React.Component {
 
         return (
             <React.Fragment>
-                <Navbar username='Username' toggleDrawer={this.toggleDrawer} />
+                <Navbar username='' toggleDrawer={this.toggleDrawer} />
                 <Sidebar toggleDrawer={this.toggleDrawer} left={this.state.left} />
 
                 <div className={classes.mainContent}>

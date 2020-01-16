@@ -26,18 +26,47 @@ class PollenPage extends React.Component {
     }
 
     async componentDidMount () {
-        const data = await fetch(`${process.env.REACT_APP_API_URL}/pollen`);
-        const response = await data.json();
+        this.setState({...this.state, loading: true});
 
-        this.setState({ loading: false, pollen: response });
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/pollen/count?time=month`);
+        const data = await  response.json();
+
+        this.setState({
+            ...this.state,
+            loading: false,
+            selectedTimeFilter: this.state.selectedTimeFilter,
+            pollenCount: data.length,
+            pollen: {
+                pollenList: data
+            }
+        });
     }
+
+    changeTimeFilter = event => {
+        this.setState({...this.state, loading: true});
+
+        fetch(`${process.env.REACT_APP_API_URL}/pollen/count?time=${event.target.value}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log("pollen count response", data);
+                this.setState({ 
+                    ...this.state, 
+                    selectedTimeFilter: event.target.value, 
+                    pollenCount: data.length, 
+                    loading: false, 
+                    pollen: { 
+                        pollenList: data 
+                    } 
+                })
+            });
+    };
 
     render(){
 
         const { classes } = this.props;
         const { pollen } = this.state;
 
-        console.log("PollenData", pollen);
+        console.log("pollen", pollen.pollenList)
 
         return (
             <React.Fragment>

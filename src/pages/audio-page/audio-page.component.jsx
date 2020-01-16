@@ -28,9 +28,6 @@ class AudioPage extends React.Component {
                 <Grid className={classes.chartContainer} item xs={12} >
                     <h1 className={classes.tableTitle}>Microphone logs</h1>
                 </Grid>
-                <Grid className={classes.chartContainer} item xs={12} >
-                    <HealthChart />
-                </Grid>
                 <Grid className={classes.tableContainer} item xs={12} >
                     <CustomizedTables />
                 </Grid>

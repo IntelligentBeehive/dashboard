@@ -11,6 +11,8 @@ import {
     Legend, Label,
 } from 'recharts';
 
+import AxisLabel from '../axis-label/axis-label.component';
+
 import { withStyles } from '@material-ui/core/styles';
 
 import styles from './health-chart.styles';
@@ -30,6 +32,7 @@ class HealthChart extends React.Component {
     getGraphData = data => {
         const arr = [];
         data.forEach(entry => arr.push({
+            date: entry.dateCreated,
             hiveHealth: entry.hiveHealth
         }));
         return arr;
@@ -58,7 +61,8 @@ class HealthChart extends React.Component {
 
         const { classes } = this.props;
         const graphWidth = this.setGraphWidth();
-        console.log(this.state.data);
+       
+        console.log("graph data", this.state.data)
 
         return (
             <div className={classes.chartContainer}>
@@ -73,11 +77,13 @@ class HealthChart extends React.Component {
                 >
                     <CartesianGrid strokeDasharray="3 3" />
 
-                    <XAxis dataKey="data">
+                    <XAxis dataKey="date">
                         <Label value="Beehive health over time" offset={-25} position="insideBottom" />
                     </XAxis>
 
                     <Tooltip />
+
+                    <YAxis label={<AxisLabel axisType="yAxis" x={25} y={125} width={0} height={0}>Hive health</AxisLabel>}/>
 
                     <Line type="monotone" dataKey="hiveHealth" stroke="#8884d8" activeDot={{ r: 8 }} />
                 </LineChart>
